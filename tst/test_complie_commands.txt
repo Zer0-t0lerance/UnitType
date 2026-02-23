@@ -1,0 +1,8 @@
+UnitType_test
+g++ -std=c++17 -O3 -I./src tst/UnitType_test.cpp -o tst/test_unit.exe -L C:/msys64/ucrt64/lib -ltbb12 "-Wl,--stack,268435456"
+
+SystemState_test
+g++ -std=c++17 -O3 -I./src tst/SystemState_test.cpp -o tst/test_state.exe -L C:/msys64/ucrt64/lib -ltbb12 "-Wl,--stack,268435456"
+
+History_test
+g++ -std=c++17 -O3 -I./src tst/History_test.cpp -o tst/test_history.exe -L C:/msys64/ucrt64/lib -ltbb12 "-Wl,--stack,268435456"
