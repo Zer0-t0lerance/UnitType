@@ -15,3 +15,6 @@ obj/
 *.user
 Thumbs.db
 .DS_Store
+
+# Скомпилированные модули Python
+*.pyd
