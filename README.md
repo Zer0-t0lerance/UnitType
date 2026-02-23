@@ -30,16 +30,16 @@
    pip install pybind11 numpy matplotlib psutil
 
 2. Запустите скрипт сборки в корне проекта:
-   .\build_module.ps1
+    .\build_module.ps1
 
 3. Запустите демо-симуляцию черной дыры:
-   python demo.py
+    python demo.py
 
 C++ ядро просчитает 50 000 000 состояний за ~1 секунду и мгновенно отдаст 1+ ГБ данных в Python для отрисовки графиков.
 
 🛠 Сборка C++ тестов
 
 Если вы хотите использовать движок чисто на C++, скомпилируйте тесты следующими командами (требуется флаг -ltbb12):
-   g++ -std=c++17 -O3 -I./src tst/UnitType_test.cpp -o tst/test_unit.exe -L C:/msys64/ucrt64/lib -ltbb12 "-Wl,--stack,268435456"
-   g++ -std=c++17 -O3 -I./src tst/SystemState_test.cpp -o tst/test_state.exe -L C:/msys64/ucrt64/lib -ltbb12 "-Wl,--stack,268435456"
-   g++ -std=c++17 -O3 -I./src tst/History_test.cpp -o tst/test_history.exe -L C:/msys64/ucrt64/lib -ltbb12 "-Wl,--stack,268435456"
+    g++ -std=c++17 -O3 -I./src tst/UnitType_test.cpp -o tst/test_unit.exe -L C:/msys64/ucrt64/lib -ltbb12 "-Wl,--stack,268435456"
+    g++ -std=c++17 -O3 -I./src tst/SystemState_test.cpp -o tst/test_state.exe -L C:/msys64/ucrt64/lib -ltbb12 "-Wl,--stack,268435456"
+    g++ -std=c++17 -O3 -I./src tst/History_test.cpp -o tst/test_history.exe -L C:/msys64/ucrt64/lib -ltbb12 "-Wl,--stack,268435456"
