@@ -43,5 +43,7 @@ C++ ядро просчитает 50 000 000 состояний за ~1 секу
 
 Если вы хотите использовать движок чисто на C++, скомпилируйте тесты следующими командами (требуется флаг -ltbb12):
     ```powershell
-    g++ -std=c++17 -O3 -I./src tst/UnitType_test.cpp -o test_unit.exe -L C:/msys64/ucrt64/lib -ltbb12
-    g++ -std=c++17 -O3 -I./src tst/History_test.cpp -o test_history.exe -L C:/msys64/ucrt64/lib -ltbb12
+    g++ -std=c++17 -O3 -I./src tst/UnitType_test.cpp -o tst/test_unit.exe -L C:/msys64/ucrt64/lib -ltbb12
+    g++ -std=c++17 -O3 -I./src tst/SystemState_test.cpp -o tst/test_state.exe -L C:/msys64/ucrt64/lib -ltbb12
+    g++ -std=c++17 -O3 -I./src tst/History_test.cpp -o tst/test_history.exe -L C:/msys64/ucrt64/lib -ltbb12
+    ---
