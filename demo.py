@@ -54,7 +54,7 @@ ax = plt.axes()
 ax.set_facecolor('black')
 plt.scatter([0], [0], color='white', s=100, zorder=5, label='Аттрактор')
 
-for i in range(5):
+for i in range(1000):
     plt.plot(history[:, i, 0], history[:, i, 1], alpha=0.8, linewidth=1.5)
 
 plt.title("Орбиты (C++ Engine -> Python Plot)", color='white')
