@@ -1,0 +1,2 @@
+2026-03-31 22:55:54,885 - root - ERROR - Error during cleanup of RadioTelescopeUV: 'RadioTelescopeUV' object has no attribute '_use_cache'
+2026-03-31 22:56:59,691 - root - ERROR - Error during cleanup of RadioTelescopeUV: 'RadioTelescopeUV' object has no attribute '_use_cache'
