@@ -55,7 +55,7 @@ namespace unitype {
                 v = v - (dir * (force * dt)); 
                 r = r + (v * dt);             
             }
-            archive->push_step(time, system.get_coords());
+            archive->push_step(time, system);
             time += dt;
         }
         

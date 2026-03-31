@@ -48,7 +48,7 @@ int main() {
         }
         
         // Сверхбыстрая запись сырого массива!
-        archive.push_step(time, current_state.get_coords());
+        archive.push_step(time, current_state);
         time += dt;
     }
 

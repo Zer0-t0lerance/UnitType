@@ -3,7 +3,9 @@
 #include <cassert>
 #include <algorithm>
 #include <execution>
+#include <cstring>
 #include "UnitType.h"
+#include "SystemState.h" // Добавили зависимость от SystemState
 
 namespace unitype {
 
@@ -86,14 +88,30 @@ public:
         return TrackProxy<T, N>(this, object_id, count);
     }
 
-    /** * @brief Сверхбыстрая запись полного кадра данных в Архив.
-     * @param t Отметка времени.
-     * @param step_data Сырой массив данных (например, координаты всех объектов на текущем шаге).
+    /** * @brief Сверхбыстрая запись полного кадра напрямую из Чанков SystemState.
+     * Избегает создания временных векторов. Использует memcpy для максимальной скорости.
      */
-    void push_step(double t, const std::vector<UnitType<T, N>>& step_data) {
-        assert(step_data.size() == count && "Размер данных не совпадает с настройками Архива!");
+    void push_step(double t, const SystemState<T, N>& current_state) {
+        assert(current_state.size() == count && "Размер данных не совпадает с настройками Архива!");
         times.push_back(t); 
-        data.insert(data.end(), step_data.begin(), step_data.end());
+
+        // Выделяем место в конце архива (быстро, так как мы сделали reserve в конструкторе)
+        size_t old_size = data.size();
+        data.resize(old_size + count);
+
+        // Быстро копируем данные из каждого чанка напрямую в плоскую память Архива
+        double* dest_ptr = reinterpret_cast<double*>(data.data() + old_size);
+        size_t offset = 0;
+
+        // Внимание: мы обращаемся к приватным чанкам SystemState, 
+        // поэтому HistoryContainer нужно сделать friend классом в SystemState.h
+        for (const auto& chunk : current_state.chunks) {
+            size_t elements_to_copy = std::min(CHUNK_SIZE, count - offset);
+            std::memcpy(dest_ptr + offset * N, 
+                        chunk->r.data(), 
+                        elements_to_copy * sizeof(UnitType<T, N>));
+            offset += elements_to_copy;
+        }
     }
 
     /** @brief Глобальный многопоточный сдвиг всех сохраненных данных на вектор. */

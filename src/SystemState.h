@@ -11,6 +11,9 @@ namespace unitype {
 constexpr size_t CHUNK_SIZE = 4096;
 
 template <typename T, size_t N>
+class HistoryContainer;
+
+template <typename T, size_t N>
 class SystemState;
 
 /**
@@ -45,7 +48,8 @@ public:
 template <typename T, size_t N>
 class SystemState {
 private:
-    friend class StateProxy<T, N>; 
+    friend class StateProxy<T, N>;
+    friend class HistoryContainer<T, N>;
 
     // Внутренний непрерывный блок памяти на CHUNK_SIZE элементов
     struct Chunk {
