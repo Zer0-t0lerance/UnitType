@@ -105,10 +105,11 @@ public:
 
         // Внимание: мы обращаемся к приватным чанкам SystemState, 
         // поэтому HistoryContainer нужно сделать friend классом в SystemState.h
+        // Быстро копируем данные из абстрактных чанков
         for (const auto& chunk : current_state.chunks) {
             size_t elements_to_copy = std::min(CHUNK_SIZE, count - offset);
             std::memcpy(dest_ptr + offset * N, 
-                        chunk->r.data(), 
+                        chunk->data.data(), // <--- ИЗМЕНИЛИ r НА data
                         elements_to_copy * sizeof(UnitType<T, N>));
             offset += elements_to_copy;
         }
